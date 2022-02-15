@@ -17,7 +17,46 @@
 ul {
     list-style: none;
 }
-
+/* form & img style */
+.address{
+    width: 100%;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    font-size: 30px;
+    color: var(--primary);
+}
+main{
+    width: 90vw;
+    margin: 0 auto;
+    
+}
+.input{ 
+    padding: .5em;
+    border-radius: 5px;
+    width: 68vw;
+} 
+.button{
+    width: 20vw;
+    padding: 0.5em;
+    border-radius: 5px;
+    background-color:var(--primary);
+    color: var(--white) ;
+    border: 1px solid var(--primary);
+}
+.figure { 
+    width: 90%;
+    margin: .5em auto;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 5px 5px 4px rgba(120, 74, 74, 0.25);
+    
+} 
+.figure .img{
+    width: 100%;
+    border-radius: 5px;
+    
+}
 /* start important section  */
 .important-sec {
     width:90vw;

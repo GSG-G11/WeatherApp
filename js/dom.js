@@ -62,26 +62,56 @@ const handlegeneralinformation = (data) =>{
 
     moreInfo.append(wind,pressure,humidity,visibility)
 
+}
+const handeldailyWeather = (data) => {
+      const days =getElement('.days')
+    deleteChild( days)
+    let list = [];
+    let last_date = null;
+    for (let i = 0; i < data.list.length; i++) {
+        let item = data.list[i];
+        let date = (new Date(1000 * data.list[i].dt)).toLocaleDateString();
+        if (last_date !== date) {
+            list.push(item);
+            last_date = date;
+        }
+    }
+    list.forEach(weather => {
+    const day=document.createElement('div')
+    day.className="day"
+    days.appendChild(day)
+
+    const dateDaily=document.createElement('span')
+    dateDaily.className="date-daily"
+    dateDaily.textContent=`${(new Date(1000 * weather.dt)).toDateString()}`
+
+    const degreeDaily=document.createElement('span')
+    degreeDaily.className="degree-daily"
+    degreeDaily.textContent=`${(weather.main.temp-273).toFixed(2)}° C`
+    day.append(dateDaily,degreeDaily)
+    });
+  
+  
     
 }
-fetch ("GET","https://pixabay.com/api/?key=25715508-30ede2cb1753fb52763f43dcd&q=gaza&image_type=photo",handlePicture)
-
-
+const imgApiKey='25715508-30ede2cb1753fb52763f43dcd'
+const urlImg=`https://pixabay.com/api/?key=${imgApiKey}&q=gaza&image_type=photo`
 const weatherApiKey= '6ee2f171995fb8fff1fa087c6724cc4e'
 const urlWeather=`https://api.openweathermap.org/data/2.5/weather?units=metri&lang=e&q=gaza&appid=${weatherApiKey}`
-
+const urlDaily=`https://api.openweathermap.org/data/2.5/forecast?q=gaza&appid=${weatherApiKey}`
+fetch ("GET",urlImg,handlePicture)
 fetch("GET",urlWeather,handlegeneralinformation)
-
+fetch("GET",urlDaily,handeldailyWeather)
 
 getElement('.form').addEventListener('submit',(e)=>{
     e.preventDefault()
     const inputValue=getElement('.input').value
-    const urlPicture=`https://pixabay.com/api/?key=25715508-30ede2cb1753fb52763f43dcd&q=${inputValue}&image_type=photo`
+    const urlPicture=`https://pixabay.com/api/?key=${imgApiKey}&q=${inputValue}&image_type=photo`
     const urlWeather=`https://api.openweathermap.org/data/2.5/weather?units=metri&lang=e&q=${inputValue}&appid=${weatherApiKey}`
+    const urlDaily=`https://api.openweathermap.org/data/2.5/forecast?q=${inputValue}&appid=${weatherApiKey}`
     fetch("GET",urlPicture,handlePicture)
     fetch("GET",urlWeather,handlegeneralinformation)
-
-
+    fetch("GET",urlDaily,handeldailyWeather)
 
 })
 

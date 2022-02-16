@@ -17,9 +17,11 @@
 ul {
     list-style: none;
 }
+body {
+    position: relative;
+}
 /* form & img style */
 .address{
-    width: 100%;
     text-align: center;
     padding-top: 40px;
     padding-bottom: 20px;
@@ -45,17 +47,15 @@ main{
     border: 1px solid var(--primary);
 }
 .figure { 
-    width: 90%;
+    width: 90vw;
     margin: .5em auto;
     overflow: hidden;
     border-radius: 5px;
     box-shadow: 5px 5px 4px rgba(120, 74, 74, 0.25);
-    
 } 
 .figure .img{
     width: 100%;
     border-radius: 5px;
-    
 }
 /* start important section  */
 .important-sec {
@@ -116,6 +116,37 @@ main{
 }
 
 /* end daily section */
+/* start handel error */
+.error-sec {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 10;
+    visibility: hidden;
+    width: 70vw;
+    margin: 0 auto;
+    background-color: var(--white);
+    padding: 2em;
+    border: 2px solid var(--primary);
+}
+.error-sec .fa-times {
+    margin-bottom: 1em;
+    font-size: 2em;
+    color: var(--primary);
+    text-align: right;
+    display: block;
+    cursor: pointer;
+}
+.error-sec img {
+    width: 100%;
+}
+.error-sec .error {
+    text-align: center;
+    font-weight: bold;
+    color: var(--primary);
+}
+/* end handel error */
 
 /* responsive */
 

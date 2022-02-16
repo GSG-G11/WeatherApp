@@ -7,7 +7,6 @@ const  deleteChild =(element)  => {
     var child = element.lastElementChild;
 
     while (child) {
-        console.log(child) 
         element.removeChild(child);
         child = element.lastElementChild;
     }

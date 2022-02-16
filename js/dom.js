@@ -16,8 +16,7 @@ const handlegeneralinformation = (data) =>{
     currentWeather.style.visibility="visible"
     deleteChild( current)
     if (data.cod ==200){
-        const date=createElement('span','data',newDate.toLocaleDateString())
-        const time=createElement ('span','time',newDate.toLocaleTimeString())
+        const date=createElement('span','data',newDate.toDateString())
         const nameCountry=createElement ('span','name-country',data.name)
         const icon=createImage('img','img','icon',`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`)
         const degreeCountry=createElement ('span','degree-country',`${(data.main.temp-273).toFixed(2)}° C`)
@@ -28,8 +27,9 @@ const handlegeneralinformation = (data) =>{
         const humidity=createElement ('li','humidity',`Humidity: ${data.main.humidity}`)
         const visibility=createElement ('li','visibility',`Visibility: ${data.visibility/1000} Km`)
 
-        current.append(date,time,nameCountry,degreeCountry,icon,moreInfo)
+        current.append(date,nameCountry,degreeCountry,icon,moreInfo)
         moreInfo.append(wind,pressure,humidity,visibility)
+
     }  
 }
 //handle function for return array with unique day

@@ -134,6 +134,10 @@ main {
     text-align: center;
     margin-bottom: .3em;
 }
+.daily-sec .days .day .icon {
+    display: block;
+    margin:0  auto;
+}
 
 /* end daily section */
 /* start handel error */
@@ -191,12 +195,12 @@ main {
     }
     .current-weather-sec {
         width:50%;
-        height: 45vh;
+        height: 80vh;
         margin-right: 1em;
     }
     .daily-sec {
         width:50%;
-        height: 45vh;
+        height: 80vh;
     }
     .daily-sec .days {
         justify-content: space-around;
@@ -227,11 +231,11 @@ main {
     .current-weather-sec {
         width:50%;
         margin-right: 1em;
-        height: 65vh;
+        height: 75vh;
     }
     .daily-sec {
         width:50%;
-        height: 65vh;
+        height: 75vh;
     }
     .daily-sec .days {
         margin-top: 2em;

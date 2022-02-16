@@ -1,3 +1,6 @@
+
+
+
  /* general style */
  * {
     padding: 0;
@@ -28,6 +31,7 @@ body {
 main{
     width: 90vw;
     margin: 0 auto;
+    
 }
 .input{ 
     padding: .5em;
@@ -143,6 +147,7 @@ main{
     color: var(--primary);
 }
 /* end handel error */
+
 /* responsive */
 
 @media (min-width: 769px ) and (max-width:1023px){

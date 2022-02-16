@@ -4,7 +4,7 @@ const fetch = (method,url,cb) =>{
         if (xhr.readyState == 4) {
             if (xhr.status == 200){
                 cb(JSON.parse(xhr.responseText))
-            }
+            } 
             if (xhr.status == 404) {
                 handleError()
             }
@@ -16,6 +16,7 @@ const fetch = (method,url,cb) =>{
 const getElement = (element) => {
     return document.querySelector(element)
 }
+
 const handleError =()=> {
     getElement('.error-sec').style.visibility="visible"; 
     getElement('.figure').style.visibility="hidden"

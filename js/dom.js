@@ -23,9 +23,9 @@ const handlePicture = (data) => {
     }
 }
 const handlegeneralinformation = (data) =>{
+    const newDate = new Date()
     const importantSection=getElement('.important-sec')
     importantSection.style.visibility="visible"
-    const newDate = new Date()
     deleteChild( importantSection)
     if (data.cod ==200){
         const date=document.createElement('span')
@@ -37,7 +37,6 @@ const handlegeneralinformation = (data) =>{
         time.className='time'
         time.textContent=newDate.toLocaleTimeString()
         importantSection.appendChild(time)
-    
         const nameCountry=document.createElement('span')
         nameCountry.className='name-country'
         nameCountry.textContent=data.name
@@ -68,7 +67,7 @@ const handlegeneralinformation = (data) =>{
         visibility.textContent=`Visibility: ${data.visibility/1000} Km`
     
         moreInfo.append(wind,pressure,humidity,visibility)
-    }
+    }  
 }
 const handeldailyWeather = (data) => {
     getElement('.daily-sec').style.visibility="visible"
@@ -85,7 +84,6 @@ const handeldailyWeather = (data) => {
                 last_date = date;
             }
         }
-            
         list.forEach(weather => {
             const day=document.createElement('div')
             day.className="day"
@@ -99,8 +97,12 @@ const handeldailyWeather = (data) => {
             degreeDaily.className="degree-daily"
             degreeDaily.textContent=`${(weather.main.temp-273).toFixed(2)}° C`
             day.append(dateDaily,degreeDaily)
-        });
-    }  
+            });
+    }
+ 
+  
+  
+    
 }
 const imgApiKey='25715508-30ede2cb1753fb52763f43dcd'
 const urlImg=`https://pixabay.com/api/?key=${imgApiKey}&q=gaza&image_type=photo`
@@ -111,7 +113,6 @@ fetch ("GET",urlImg,handlePicture)
 fetch("GET",urlWeather,handlegeneralinformation)
 fetch("GET",urlDaily,handeldailyWeather)
 
-
 addEventListener(getElement('.form'),'submit',(e)=>{
     e.preventDefault()
     const inputValue=getElement('.input').value
@@ -121,8 +122,10 @@ addEventListener(getElement('.form'),'submit',(e)=>{
     fetch("GET",urlPicture,handlePicture)
     fetch("GET",urlWeather,handlegeneralinformation)
     fetch("GET",urlDaily,handeldailyWeather)
+
 })
 
 addEventListener(getElement('.fa-times'),'click',()=> {
     getElement('.error-sec').style. visibility="hidden";
 })
+

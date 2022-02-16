@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MI Weather</title>
+    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+     <!-- fontawsome -->
+    <link 
+        rel="stylesheet"
+        href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" 
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+        crossorigin="anonymous"
+    />
+    <!-- Style Link -->
+    <link rel="stylesheet" href="../css/weather.css" />
+</head>
+<body>
+    <nav>
+        <a href="../index.html"><img src="../assets/logo.png" alt="logo" class="logo" /></a>
+    </nav>
+    <!-- form & img -->
+    <main>
+        <form class="form">
+            <input type="text" name="input" class="input" placeholder="Enter country...">
+            <button class="button" type="submit">Search</button>
+        </form>
+    </main>
+    <figure class="figure">
+       
+    </figure>
+    <!--  start container for current weather and daily  -->
+    <section class="container">
+    <!--  start current-weather section -->
+    <section class="current-weather-sec">
+        <h2 class="current-weather">Current Weather</h2>
+        <div class="current">   
+        </div>
+    </section>
+    <!--  end current-weather section -->
+    <!-- start daily section  -->
+    <section class="daily-sec">
+        <h2 class="daily-weather">Daily Weather</h2>
+        <div class="days">
+        </div>   
+    </section>
+    <!-- start daily section  -->
+    </section>  
+    <!--  end container for current weather and daily  -->
+
+    <!-- handel error -->
+    <section class="error-sec">
+        <i class="far fa-times"></i>
+        <figure>
+            <img src="../assets/error.png" alt="notfound"/>
+        </figure>
+        <p class="error"> Please Enter Valid name </p>
+    </section>
+
+
+    <!-- script file -->
+    <script src="../js/functions.js"></script>
+    <script src="../js/logic.js"></script>
+    <script src="../js/dom.js"></script>
+</body>
+</html>

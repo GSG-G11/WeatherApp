@@ -5,7 +5,7 @@ Build a app that views the current weather condition, daily weather and photo of
  
  
  ## User Journey
-At first, you will see a form to enter a city you want to search for, and you will also see a image, the current weather, and the weather for several days for a specific city. If you want to search for another city, you can enter the name of the city in the input and then press the search button or the Enter button on the keyboard .It will carry you a image and the current weather and the atmosphere for several days for this city you entered
+At first,When you open the app, at first you will find a landing page that contains our app logo, the description of the app and a button to go the weather page.secondally, you will see a form to enter a city you want to search for, and you will also see a image, the current weather, and the weather for several days for a specific city. If you want to search for another city, you can enter the name of the city in the input and then press the search button or the Enter button on the keyboard .It will carry you a image and the current weather and the atmosphere for several days for this city you entered
 
 ## Links
 * [Live Link](https://gsg-g11.github.io/WeatherApp/)

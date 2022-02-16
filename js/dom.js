@@ -17,15 +17,10 @@ const handlegeneralinformation = (data) =>{
     deleteChild( current)
     if (data.cod ==200){
         const date=createElement('span','data',newDate.toLocaleDateString())
-        current.appendChild(date)
-    
         const time=createElement ('span','time',newDate.toLocaleTimeString())
-        current.appendChild(time)
         const nameCountry=createElement ('span','name-country',data.name)
-        current.appendChild(nameCountry)
-    
+        const icon=createImage('img','img','icon',`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`)
         const degreeCountry=createElement ('span','degree-country',`${(data.main.temp-273).toFixed(2)}° C`)
-        current.appendChild(degreeCountry)
         
         const moreInfo=createElement ('ul')
         const wind=createElement ('li','wind',`Wind:  ${data.wind.speed}-${data.wind.deg}`)
@@ -33,7 +28,7 @@ const handlegeneralinformation = (data) =>{
         const humidity=createElement ('li','humidity',`Humidity: ${data.main.humidity}`)
         const visibility=createElement ('li','visibility',`Visibility: ${data.visibility/1000} Km`)
 
-        current.appendChild(moreInfo)
+        current.append(date,time,nameCountry,degreeCountry,icon,moreInfo)
         moreInfo.append(wind,pressure,humidity,visibility)
     }  
 }
@@ -63,7 +58,8 @@ const handeldailyWeather = (data) => {
             days.appendChild(day)
             const dateDaily=createElement ('span','date-daily',`${(new Date(1000 * weather.dt)).toDateString()}`)
             const degreeDaily=createElement ('span','degree-daily',`${(weather.main.temp-273).toFixed(2)}° C`)
-            day.append(dateDaily,degreeDaily)
+            const icon=createImage('img','icon','icon',`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`)
+            day.append(dateDaily,icon,degreeDaily)
             });
     }   
 }

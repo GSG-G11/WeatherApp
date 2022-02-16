@@ -1,117 +1,81 @@
-
-const  deleteChild =(element)  => {
-    var child = element.lastElementChild; 
-    while (child) {
-        element.removeChild(child);
-        child = element.lastElementChild;
-    }
-}
-const addEventListener = (element,event,cb) => {
-    return element.addEventListener(event,cb)
-}
-
-const handlePicture = (data) => {
+//handle function for crete image
+const handleImage = (data) => {
     const figure=getElement('.figure')
     figure.style.visibility="visible"
     deleteChild(figure)
     if(data.total != 0) {
-        const image=document.createElement('img')
-        image.className='img'
-        image.alt=data.hits[0].tags
-        image.src=data.hits[0].largeImageURL
+        const image=createImage('img','img',data.hits[0].tags,data.hits[0].largeImageURL)
         figure.appendChild(image)
     }
 }
+//handle function for current weather
 const handlegeneralinformation = (data) =>{
     const newDate = new Date()
-    const importantSection=getElement('.important-sec')
-    importantSection.style.visibility="visible"
-    deleteChild( importantSection)
+    const currentWeather=getElement('.current-weather-sec')
+    const current=getElement('.current')
+    currentWeather.style.visibility="visible"
+    deleteChild( current)
     if (data.cod ==200){
-        const date=document.createElement('span')
-        date.className='data'
-        date.textContent=newDate.toLocaleDateString()
-        importantSection.appendChild(date)
+        const date=createElement('span','data',newDate.toLocaleDateString())
+        current.appendChild(date)
     
-        const time=document.createElement('span')
-        time.className='time'
-        time.textContent=newDate.toLocaleTimeString()
-        importantSection.appendChild(time)
-        const nameCountry=document.createElement('span')
-        nameCountry.className='name-country'
-        nameCountry.textContent=data.name
-        importantSection.appendChild(nameCountry)
+        const time=createElement ('span','time',newDate.toLocaleTimeString())
+        current.appendChild(time)
+        const nameCountry=createElement ('span','name-country',data.name)
+        current.appendChild(nameCountry)
     
-        const degreeCountry=document.createElement('span')
-        degreeCountry.className='degree-country'
-        degreeCountry.textContent=`${(data.main.temp-273).toFixed(2)}° C`
-        importantSection.appendChild(degreeCountry)
+        const degreeCountry=createElement ('span','degree-country',`${(data.main.temp-273).toFixed(2)}° C`)
+        current.appendChild(degreeCountry)
         
-        const moreInfo=document.createElement('ul')
-        importantSection.appendChild(moreInfo)
-    
-        const wind=document.createElement('li')
-        wind.className="wind"
-        wind.textContent=`Wind:  ${data.wind.speed}-${data.wind.deg}`
-    
-        const pressure=document.createElement('li')
-        pressure.className="pressure"
-        pressure.textContent=`Pressure: ${data.main.pressure}`
-    
-        const humidity=document.createElement('li')
-        humidity.className="humidity"
-        humidity.textContent=`Humidity: ${data.main.humidity}`
-    
-        const visibility=document.createElement('li')
-        visibility.className="visibility"
-        visibility.textContent=`Visibility: ${data.visibility/1000} Km`
-    
+        const moreInfo=createElement ('ul')
+        const wind=createElement ('li','wind',`Wind:  ${data.wind.speed}-${data.wind.deg}`)
+        const pressure=createElement ('li','pressure',`Pressure: ${data.main.pressure}`)
+        const humidity=createElement ('li','humidity',`Humidity: ${data.main.humidity}`)
+        const visibility=createElement ('li','visibility',`Visibility: ${data.visibility/1000} Km`)
+
+        current.appendChild(moreInfo)
         moreInfo.append(wind,pressure,humidity,visibility)
     }  
 }
+//handle function for return array with unique day
+const uniqueDay =(array) => {
+    let uniqueDays = [];
+    let last_date = null;
+    for (let i = 0; i < array.length; i++) {
+        let item = array[i];
+        let date = (new Date(1000 * array[i].dt)).toLocaleDateString();
+        if (last_date !== date) {
+            uniqueDays.push(item);
+            last_date = date;
+        }
+    }
+    return uniqueDays
+}
+//handle function for daily weather
 const handeldailyWeather = (data) => {
     getElement('.daily-sec').style.visibility="visible"
     if (data.cod ==200){
         const days =getElement('.days')
         deleteChild( days)
-        let list = [];
-        let last_date = null;
-        for (let i = 0; i < data.list.length; i++) {
-            let item = data.list[i];
-            let date = (new Date(1000 * data.list[i].dt)).toLocaleDateString();
-            if (last_date !== date) {
-                list.push(item);
-                last_date = date;
-            }
-        }
-        list.forEach(weather => {
-            const day=document.createElement('div')
-            day.className="day"
+        const uniqueDays=uniqueDay(data.list)
+        uniqueDays.forEach(weather => {
+            const day=createElement('div','day')
             days.appendChild(day)
-        
-            const dateDaily=document.createElement('span')
-            dateDaily.className="date-daily"
-            dateDaily.textContent=`${(new Date(1000 * weather.dt)).toDateString()}`
-        
-            const degreeDaily=document.createElement('span')
-            degreeDaily.className="degree-daily"
-            degreeDaily.textContent=`${(weather.main.temp-273).toFixed(2)}° C`
+            const dateDaily=createElement ('span','date-daily',`${(new Date(1000 * weather.dt)).toDateString()}`)
+            const degreeDaily=createElement ('span','degree-daily',`${(weather.main.temp-273).toFixed(2)}° C`)
             day.append(dateDaily,degreeDaily)
             });
-    }
- 
-  
-  
-    
+    }   
 }
 const imgApiKey='25715508-30ede2cb1753fb52763f43dcd'
 const urlImg=`https://pixabay.com/api/?key=${imgApiKey}&q=gaza&image_type=photo`
 const weatherApiKey= '6ee2f171995fb8fff1fa087c6724cc4e'
 const urlWeather=`https://api.openweathermap.org/data/2.5/weather?units=metri&lang=e&q=gaza&appid=${weatherApiKey}`
 const urlDaily=`https://api.openweathermap.org/data/2.5/forecast?q=gaza&appid=${weatherApiKey}`
-fetch ("GET",urlImg,handlePicture)
+fetch ("GET",urlImg,handleImage)
 fetch("GET",urlWeather,handlegeneralinformation)
 fetch("GET",urlDaily,handeldailyWeather)
+
 
 addEventListener(getElement('.form'),'submit',(e)=>{
     e.preventDefault()
@@ -119,7 +83,7 @@ addEventListener(getElement('.form'),'submit',(e)=>{
     const urlPicture=`https://pixabay.com/api/?key=${imgApiKey}&q=${inputValue}&image_type=photo`
     const urlWeather=`https://api.openweathermap.org/data/2.5/weather?units=metri&lang=e&q=${inputValue}&appid=${weatherApiKey}`
     const urlDaily=`https://api.openweathermap.org/data/2.5/forecast?q=${inputValue}&appid=${weatherApiKey}`
-    fetch("GET",urlPicture,handlePicture)
+    fetch("GET",urlPicture,handleImage)
     fetch("GET",urlWeather,handlegeneralinformation)
     fetch("GET",urlDaily,handeldailyWeather)
 

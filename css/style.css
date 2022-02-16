@@ -1,8 +1,5 @@
-
-
-
- /* general style */
- * {
+/* general style */
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -20,26 +17,26 @@ ul {
 body {
     position: relative;
 }
+/* nav style */
+
+.logo {
+    display: block;
+    margin:0 auto;
+}
 /* form & img style */
-.address{
-    text-align: center;
-    padding-top: 40px;
-    padding-bottom: 20px;
-    font-size: 30px;
-    color: var(--primary);
-}
-main{
+main {
     width: 90vw;
-    margin: 0 auto;
-    
+    margin: 0 auto ;
 }
-.input{ 
+.input { 
     padding: .5em;
+    height: 3.5em;
     border-radius: 5px;
     width: 68vw;
 } 
-.button{
+.button {
     width: 20vw;
+    height: 3.5em;
     padding: 0.5em;
     border-radius: 5px;
     background-color:var(--primary);
@@ -48,6 +45,7 @@ main{
 }
 .figure { 
     width: 90vw;
+    height: 20em;
     margin: .5em auto;
     overflow: hidden;
     border-radius: 5px;
@@ -55,49 +53,64 @@ main{
 } 
 .figure .img{
     width: 100%;
+    height: 100%;
     border-radius: 5px;
+    transition: all 1s ease-in-out;
 }
-/* start important section  */
-.important-sec {
-    width:90vw;
+.figure:hover .img{
+    transform: scale(1.2) ;
+}
+/* container for current and daily sections */
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    margin: 1em auto;
+}
+/* start current-weather section  */
+.current-weather-sec {
+    width:100%;
+    padding: 1em;
+    border-radius: .5em;
+    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
+    font-size: 1.2em;
+    animation: cardFromLeft 1s ease-in-out ;
+}
+.current {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 1em;
-    margin:1em auto;
-    border-radius: .5em;
-    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
-    font-size: 1.2em;
 }
-.important-sec .name-country {
+.current-weather-sec .name-country {
     color: var(--primary);
     font-size: 2em;
     padding: .5em;
     font-weight: bold;
 }
-.important-sec .degree-country {
+.current-weather-sec .degree-country {
     font-size: 1.5em;
     margin-bottom: .5em;
 }
 .wind,.pressure,.humidity,.visibility {
     margin-bottom: .5em;
 }
-/* end important section  */
+/* end current-weather section  */
 /* start daily section */
 .daily-sec {
-    width:90vw;
+    width:100%;
     padding: 1em;
-    margin:1em auto;
     border-radius: .5em;
     box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
     font-size: 1.2em;
+    animation: cardFromLeft 1s ease-in-out ;
 }
-.daily-sec .daily-weather {
+.daily-sec .daily-weather,
+.current-weather {
     color: var(--primary);
     text-align: center;
     margin-bottom: .5em;
-    font-size: 2em;
+    font-size: 1.5em;
 }
 .daily-sec .days {
     display: flex;
@@ -119,27 +132,33 @@ main{
 /* start handel error */
 .error-sec {
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%,-50%);
     z-index: 10;
     visibility: hidden;
     width: 70vw;
+    height: 50vh;
     margin: 0 auto;
     background-color: var(--white);
     padding: 2em;
     border: 2px solid var(--primary);
 }
 .error-sec .fa-times {
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
     font-size: 2em;
     color: var(--primary);
     text-align: right;
     display: block;
     cursor: pointer;
 }
+.error-sec figure {
+    height: 80%;
+    margin-bottom: 1em;
+}
 .error-sec img {
     width: 100%;
+    height: 100%;
 }
 .error-sec .error {
     text-align: center;
@@ -151,26 +170,97 @@ main{
 /* responsive */
 
 @media (min-width: 769px ) and (max-width:1023px){
-    .important-sec {
-        width:50vw;
+    main{
+        width: 60vw;
+    }
+    .input{ 
+        width: 44vw;
+    } 
+    .button{
+        width: 15vw;
+    }
+    .container {
+        flex-direction: row;
+    }
+    .current-weather-sec {
+        width:50%;
+    }
+    .daily-sec {
+        width:50%;
     }
     .daily-sec .days {
+        justify-content: space-around;
         gap: 2vw 5vw
     }
     .daily-sec .days .day {
-        width: 25vw;
+        width: 15vw;
         margin-bottom: 0;
+    }
+    .error-sec {
+        width: 50vw;
+        top:50%
     }
 }
 @media (min-width: 1024px ){
-    .important-sec {
-        width:40vw;
+    main{
+        width: 60vw;
+    }
+    .input{ 
+        width: 44vw;
+    } 
+    .button{
+        width: 15vw;
+    }
+    .container {
+        flex-direction: row;
+    }
+    .current-weather-sec {
+        width:50%;
+    }
+    .daily-sec {
+        width:50%;
     }
     .daily-sec .days {
+        margin-top: 2em;
+        justify-content: space-around;
         gap: 2vw 3vw
     }
     .daily-sec .days .day {
         width: 15vw;
         margin-bottom: 0;
+    }
+    .error-sec {
+        width: 50vw;
+        top:50%
+    }
+}
+
+
+/* @-webkit-keyframes flip-horizontal-top {
+    0% {
+      -webkit-transform: translate(-1500px);
+              transform: translate(-1500px);
+    }
+    100% {
+      -webkit-transform: translate(0px);
+                transform: translate(0px);
+  }
+}
+  @keyframes flip-horizontal-top {
+    0% {
+      -webkit-transform: translate(-1500px);
+              transform: translate(-1500px)
+    }
+    100% {
+      -webkit-transform: translate(0px);
+                transform: translate(-10px)
+     } */
+  /* } */
+
+
+  @keyframes cardFromLeft {
+    0%{
+        opacity: 0;
+        transform: translateX(-100vw) scale(0);
     }
 }

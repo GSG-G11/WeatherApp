@@ -17,7 +17,7 @@
 </head>
 <body>
     <nav>
-         <h1 class="address"> Weather App</h1>
+        <img src="assets/logo.png" alt="logo" class="logo" />
     </nav>
     <!-- form & img -->
     <main>
@@ -29,19 +29,24 @@
     <figure class="figure">
        
     </figure>
-    
-    <!--  start important section -->
-    <section class="important-sec">
+    <!--  start container for current weather and daily  -->
+    <section class="container">
+    <!--  start current-weather section -->
+    <section class="current-weather-sec">
+        <h2 class="current-weather">Current Weather</h2>
+        <div class="current">   
+        </div>
     </section>
-    <!--  end important section -->
+    <!--  end current-weather section -->
     <!-- start daily section  -->
     <section class="daily-sec">
         <h2 class="daily-weather">Daily Weather</h2>
         <div class="days">
-        </div>
-      
+        </div>   
     </section>
     <!-- start daily section  -->
+    </section>  
+    <!--  end container for current weather and daily  -->
 
     <!-- handel error -->
     <section class="error-sec">
@@ -54,6 +59,7 @@
 
 
     <!-- script file -->
+    <script src="js/functions.js"></script>
     <script src="js/logic.js"></script>
     <script src="js/dom.js"></script>
 </body>

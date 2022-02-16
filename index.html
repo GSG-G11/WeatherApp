@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wheather App</title>
-    <!-- Fonts Link -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- fontawsome -->
     <link 
-        href="https://fonts.googleapis.com/css2family=Manrope:wght@200;300;400;500;600;700;800&family=Yeseva+One&display=swap"
         rel="stylesheet"
+        href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" 
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+        crossorigin="anonymous"
     />
     <!-- Style Link -->
     <link rel="stylesheet" href="css/style.css" />
@@ -40,9 +40,18 @@
         <h2 class="daily-weather">Daily Weather</h2>
         <div class="days">
         </div>
-      
     </section>
     <!-- start daily section  -->
+
+    <!-- handel error -->
+    <section class="error-sec">
+        <i class="far fa-times"></i>
+        <figure>
+            <img src="assets/error.png" alt="notfound"/>
+        </figure>
+        <p class="error"> Please Enter Valid name </p>
+    </section>
+
 
     <!-- script file -->
     <script src="js/logic.js"></script>

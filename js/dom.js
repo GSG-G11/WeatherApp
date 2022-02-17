@@ -63,9 +63,9 @@ const handeldailyWeather = (data) => {
             });
     }   
 }
-const imgApiKey='25715508-30ede2cb1753fb52763f43dcd'
+const imgApiKey = imgKey.apiKey
+const weatherApiKey = weatherKey.apiKey
 const urlImg=`https://pixabay.com/api/?key=${imgApiKey}&q=gaza&image_type=photo`
-const weatherApiKey= '6ee2f171995fb8fff1fa087c6724cc4e'
 const urlWeather=`https://api.openweathermap.org/data/2.5/weather?units=metri&lang=e&q=gaza&appid=${weatherApiKey}`
 const urlDaily=`https://api.openweathermap.org/data/2.5/forecast?q=gaza&appid=${weatherApiKey}`
 fetch ("GET",urlImg,handleImage)
